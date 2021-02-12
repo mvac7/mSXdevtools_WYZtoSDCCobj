@@ -77,3 +77,33 @@ I want to give a special thanks to all those who freely share their knowledge wi
 * BlueMSX emulator >> [(WEB)](http://www.bluemsx.com/)
 * OpenMSX emulator >> [(WEB)](http://openmsx.sourceforge.net/)
 * Meisei emulator >> ?
+ 
+ 
+## How to use
+
+Once we have a song made with WYZ Tracker (.wyz), we must export it to the .mus format designed to import them into assembler projects.
+
+The exported data consists of two files:
+- **.mus.asm** Includes data for Instruments, Effects and the note table.
+- **.mus** It is a binary with the sequence data of a song.
+
+WYZ Player is designed to handle all the sound content of a video game. It allows you to play several songs and launch sound effects while it is playing.
+
+For it to work properly we have to make the songs using the same set of instruments and effects.
+
+You can also perform songs with different Instrument Sets, but when changing songs you will have to reset the player (WYZ_Init), pointing to the data of each song. 
+The WYZplayer library for SDCC is not designed for this way of working but you can adapt it by just changing the name of the indexes (instruments, effects and note table) of each song.
+
+WYZtoSDCCobj Converter Tool generates a C object file with the instrument set and one or more songs.
+
+To do this, you will first have to load the file with the instrument data (.mus.asm), by pressing the "Add" button on the first line.
+
+The second step you will have to add the data of all the songs (.mus) that you want to include, for this you have a list type field, where you can add or delete songs.
+
+To finish you will have to save the result that is shown in the window, in SDCC assembler format, by pressing the "Save WYZ.s" button.
+
+To compile this source and obtain the Object file (.rel), you must open the command line and execute the following:
+
+```
+sdasz80 -o filename.s
+```
