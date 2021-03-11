@@ -28,7 +28,6 @@ Enjoy it!
 
 
 
-
 ---
 ## License
 
@@ -78,7 +77,8 @@ I want to give a special thanks to all those who freely share their knowledge wi
 * OpenMSX emulator >> [(WEB)](http://openmsx.sourceforge.net/)
 * Meisei emulator >> ?
  
- 
+
+--- 
 ## How to use
 
 Once we have a song made with WYZ Tracker (.wyz), we must export it to the .mus format designed to import them into assembler projects.

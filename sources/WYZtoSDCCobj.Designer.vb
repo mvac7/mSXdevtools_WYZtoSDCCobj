@@ -34,6 +34,7 @@ Partial Class WYZtoSDCCobj
         Me.Songs_Label = New System.Windows.Forms.Label()
         Me.AddAsmButton = New System.Windows.Forms.Button()
         Me.OutputData_GroupBox = New System.Windows.Forms.GroupBox()
+        Me.CreateOBJ_Button = New System.Windows.Forms.Button()
         Me.SaveAsButton = New System.Windows.Forms.Button()
         Me.CopyAllButton = New System.Windows.Forms.Button()
         Me.OutputText = New System.Windows.Forms.TextBox()
@@ -43,7 +44,6 @@ Partial Class WYZtoSDCCobj
         Me.AboutButton = New System.Windows.Forms.Button()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.CreateOBJ_Button = New System.Windows.Forms.Button()
         Me.Config_GroupBox.SuspendLayout()
         Me.OutputData_GroupBox.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
@@ -97,7 +97,7 @@ Partial Class WYZtoSDCCobj
         Me.ClearButton.Size = New System.Drawing.Size(71, 23)
         Me.ClearButton.TabIndex = 74
         Me.ClearButton.Text = "Clear"
-        Me.ToolTip1.SetToolTip(Me.ClearButton, "Delete all songs data files")
+        Me.ToolTip1.SetToolTip(Me.ClearButton, "Delete all Songs")
         Me.ClearButton.UseVisualStyleBackColor = True
         '
         'DeleteMUS_Button
@@ -107,7 +107,7 @@ Partial Class WYZtoSDCCobj
         Me.DeleteMUS_Button.Size = New System.Drawing.Size(71, 23)
         Me.DeleteMUS_Button.TabIndex = 73
         Me.DeleteMUS_Button.Text = "Delete"
-        Me.ToolTip1.SetToolTip(Me.DeleteMUS_Button, "Delete selected song data file")
+        Me.ToolTip1.SetToolTip(Me.DeleteMUS_Button, "Delete selected Song")
         Me.DeleteMUS_Button.UseVisualStyleBackColor = True
         '
         'AddMUS_Button
@@ -164,6 +164,19 @@ Partial Class WYZtoSDCCobj
         Me.OutputData_GroupBox.TabIndex = 9
         Me.OutputData_GroupBox.TabStop = False
         Me.OutputData_GroupBox.Text = "Output Data"
+        '
+        'CreateOBJ_Button
+        '
+        Me.CreateOBJ_Button.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.CreateOBJ_Button.BackColor = System.Drawing.Color.Silver
+        Me.CreateOBJ_Button.Enabled = False
+        Me.CreateOBJ_Button.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CreateOBJ_Button.Location = New System.Drawing.Point(345, 263)
+        Me.CreateOBJ_Button.Name = "CreateOBJ_Button"
+        Me.CreateOBJ_Button.Size = New System.Drawing.Size(107, 32)
+        Me.CreateOBJ_Button.TabIndex = 9
+        Me.CreateOBJ_Button.Text = "Create OBJ"
+        Me.CreateOBJ_Button.UseVisualStyleBackColor = False
         '
         'SaveAsButton
         '
@@ -244,19 +257,6 @@ Partial Class WYZtoSDCCobj
         Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
         Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(74, 17)
         Me.ToolStripStatusLabel1.Text = "mSX·devtool"
-        '
-        'CreateOBJ_Button
-        '
-        Me.CreateOBJ_Button.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.CreateOBJ_Button.BackColor = System.Drawing.Color.Silver
-        Me.CreateOBJ_Button.Enabled = False
-        Me.CreateOBJ_Button.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CreateOBJ_Button.Location = New System.Drawing.Point(345, 263)
-        Me.CreateOBJ_Button.Name = "CreateOBJ_Button"
-        Me.CreateOBJ_Button.Size = New System.Drawing.Size(107, 32)
-        Me.CreateOBJ_Button.TabIndex = 9
-        Me.CreateOBJ_Button.Text = "Create OBJ"
-        Me.CreateOBJ_Button.UseVisualStyleBackColor = False
         '
         'WYZtoSDCCobj
         '

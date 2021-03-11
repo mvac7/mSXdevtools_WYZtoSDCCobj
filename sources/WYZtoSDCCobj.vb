@@ -34,7 +34,7 @@ Public Class WYZtoSDCCobj
     Private WYZ_SongsData As New Hashtable
 
 
-    Private WYZ_DATOS_NOTAS(61) As Object 'New ArrayList
+    Private WYZ_DATOS_NOTAS As Array 'New ArrayList
 
 
 
@@ -108,13 +108,12 @@ Public Class WYZtoSDCCobj
         Me.OpenFileDialog1.Multiselect = True
 
         If Me.WYZ_Path = "" Then
-            'Me.OpenFileDialog1.FileName = ""
             Me.OpenFileDialog1.InitialDirectory = Application.StartupPath
         Else
-            '    Me.OpenFileDialog1.FileName = Path.GetFileName(Me.filePath)
             Me.OpenFileDialog1.InitialDirectory = Path.GetDirectoryName(Me.WYZ_Path)
         End If
 
+        Me.OpenFileDialog1.FileName = ""
         'Me.OpenFileDialog1.DefaultExt = "prj"
         Me.OpenFileDialog1.Filter = "WYZ Song Sequence Data|*.mus"
 
@@ -152,13 +151,12 @@ Public Class WYZtoSDCCobj
         Me.OpenFileDialog1.Multiselect = False
 
         If Me.WYZ_Path = "" Then
-            'Me.OpenFileDialog1.FileName = ""
             Me.OpenFileDialog1.InitialDirectory = Application.StartupPath
         Else
-            '    Me.OpenFileDialog1.FileName = Path.GetFileName(Me.filePath)
             Me.OpenFileDialog1.InitialDirectory = Path.GetDirectoryName(Me.WYZ_Path)
         End If
 
+        Me.OpenFileDialog1.FileName = ""
         'Me.OpenFileDialog1.DefaultExt = "prj"
         Me.OpenFileDialog1.Filter = "WYZ Instruments Data|*.mus.asm"
 
@@ -166,6 +164,7 @@ Public Class WYZtoSDCCobj
             Me.MUSasm_TextBox.Text = Path.GetFileName(OpenFileDialog1.FileName)
             LoadInstrumentsData(OpenFileDialog1.FileName)
         End If
+
     End Sub
 
 
@@ -359,7 +358,7 @@ Public Class WYZtoSDCCobj
 
     Private Sub GenerateData()
 
-        Dim aMSXDataFormat As New DataFormat
+        Dim aDataFormat As New DataFormat
 
         Dim comments As New ArrayList
 
@@ -422,7 +421,7 @@ Public Class WYZtoSDCCobj
             ' tabla de notas <<---------------------------------------
             comments.Clear()
             comments.Add("Frecuencias para las notas")
-            OutputText.Text += aMSXDataFormat.GetAsmCode(Me.WYZ_DATOS_NOTAS, 10, DataFormat.ByteDataFormat.HEXADECIMAL_0xnn, "_WYZ_notes:", comments, DataWordInst)
+            OutputText.Text += aDataFormat.GetAssemblerCode(Me.WYZ_DATOS_NOTAS, 10, DataFormat.DataType.HEXADECIMAL_0xnn, "_WYZ_notes:", comments, DataWordInst)
             OutputText.Text += vbNewLine
 
         End If
@@ -437,7 +436,7 @@ Public Class WYZtoSDCCobj
                 outputData = Me.WYZ_SongsData.Item(anItem)
 
                 comments.Add("Length: " + CStr(outputData.Length))
-                OutputText.Text += aMSXDataFormat.GetAsmCode(outputData, 16, DataFormat.ByteDataFormat.HEXADECIMAL_0xnn, SONG_LABEL + CStr(SongNumber).PadLeft(2, "0"c), comments, DataByteInst)
+                OutputText.Text += aDataFormat.GetAssemblerCode(outputData, 16, DataFormat.DataType.HEXADECIMAL_0xnn, SONG_LABEL + CStr(SongNumber).PadLeft(2, "0"c), comments, DataByteInst)
                 OutputText.Text += vbNewLine
                 SongNumber += 1
             Next
