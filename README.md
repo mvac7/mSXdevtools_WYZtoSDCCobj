@@ -19,13 +19,13 @@ In the first version it only allows exporting the code file, but the objective i
 
 MSX PSG proPLAYER V0.3 is a development of WYZ [(WYZ Player)](https://github.com/AugustoRuiz/WYZTracker/tree/master/AsmPlayer)
 
-WYZTracker is a tool developed by Augusto Ruiz, from Retroworks, that can be used to compose music for WYZ's Player.
+[WYZTracker](https://github.com/AugustoRuiz/WYZTracker) is a tool developed by Augusto Ruiz, from Retroworks, that can be used to compose music for WYZ's Player.
 
 This tool is part of the [MSX fR3eL Project](https://github.com/mvac7/SDCC_MSX_fR3eL), although it can be included in other libraries/engines.
 
 This is an open source project so you can include it in your projects, create a Fork to modify it and create a version adapted to your needs or as a base to create other tools.
 
-Enjoy it!
+This software was developed in Microsoft Visual Studio Community 2019.
 
 
 
@@ -50,12 +50,12 @@ If not, see <http://www.gnu.org/licenses/>.
 ## Requirements:
 
 * Windows OS with .net framework v4.0
- 
+* [WYZTracker](https://github.com/AugustoRuiz/WYZTracker) for create WYZ songs 
 
 --- 
 ## How to use
 
-Once we have a song made with WYZ Tracker `.wyz`, we must export it to the `.mus` format designed to import them into assembler projects.
+Once we have a song made with WYZTracker `.wyz`, we must export it to the `.mus` format designed to import them into assembler projects.
 
 The exported data consists of two files:
 - `.mus.asm` Includes data for Instruments, Effects and the note table.
