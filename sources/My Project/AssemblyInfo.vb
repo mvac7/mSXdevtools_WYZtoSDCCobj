@@ -10,9 +10,9 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("WYZtoSDCCobj")>
 <Assembly: AssemblyDescription("WYZ to SDCC Object Converter Tool for WYZ Player MSX SDCC Library (fR3eL Project)")>
-<Assembly: AssemblyCompany("")>
+<Assembly: AssemblyCompany("MSX comm·unity")>
 <Assembly: AssemblyProduct("WYZtoSDCCobj Converter Tool")>
-<Assembly: AssemblyCopyright("Copyright mvac7 (aka aorante) 2021")>
+<Assembly: AssemblyCopyright("Copyright mvac7 (aka aorante) 2022")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' utilizando el carácter "*", como se muestra a continuación:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.0.1.0")>
-<Assembly: AssemblyFileVersion("1.0.1.0")>
+<Assembly: AssemblyVersion("1.0.3.0")>
+<Assembly: AssemblyFileVersion("1.0.3.0")>

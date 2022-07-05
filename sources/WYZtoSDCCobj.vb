@@ -79,6 +79,7 @@ Public Class WYZtoSDCCobj
     End Sub
 
 
+
     Private Sub DeleteMUS_Button_Click(sender As Object, e As EventArgs) Handles DeleteMUS_Button.Click
         Dim itemName As String
         If Me.MUS_ListBox.SelectedIndex >= 0 Then
@@ -129,20 +130,33 @@ Public Class WYZtoSDCCobj
 
 
 
-    Private Sub AddSongData(ByVal filePath As String)
+    Private Function AddSongData(ByVal filePath As String) As Boolean
 
-        Dim aFileData As Object()
+        Dim result As Boolean = False
 
-        aFileData = LoadBinary(filePath)
+        Dim fileName As String = Path.GetFileName(filePath)
 
-        If Not aFileData Is Nothing Then
-            Me.MUS_ListBox.Items.Add(Path.GetFileName(filePath))
-            Me.WYZ_SongsData.Add(Path.GetFileName(filePath), aFileData)
+        Dim aFileData As Byte()
 
-            GenerateData()
+        If Not Me.WYZ_SongsData.ContainsKey(fileName) Then
+
+            aFileData = LoadBinary(filePath)
+
+            If Not aFileData Is Nothing Then
+                Me.MUS_ListBox.Items.Add(fileName)
+                Me.WYZ_SongsData.Add(fileName, aFileData.Clone())
+
+                GenerateData()
+
+                result = True
+
+            End If
+
         End If
 
-    End Sub
+        Return result
+
+    End Function
 
 
 
@@ -275,8 +289,9 @@ Public Class WYZtoSDCCobj
 
 
 
-
     Private Sub SaveAs()
+
+        Dim filename As String = Path.GetFileNameWithoutExtension(Me.WYZ_Path)
 
         If Me.OutputText.Text = "" Then
             MsgBox("Nothing to save for you...", MsgBoxStyle.Exclamation, "Alert")
@@ -286,7 +301,7 @@ Public Class WYZtoSDCCobj
 
             If Not Me.WYZ_Path = "" Then
                 Me.SaveFileDialog1.InitialDirectory = Path.GetDirectoryName(Me.WYZ_Path)
-                Me.SaveFileDialog1.FileName = Path.GetFileNameWithoutExtension(Me.WYZ_Path)
+                Me.SaveFileDialog1.FileName = filename.Substring(0, filename.IndexOf(".mus"))
             End If
 
             If SaveFileDialog1.ShowDialog() = DialogResult.OK Then
@@ -320,13 +335,13 @@ Public Class WYZtoSDCCobj
     ''' <param name="filePath"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Private Function LoadBinary(ByVal filePath As String) As Object()
+    Private Function LoadBinary(ByVal filePath As String) As Byte()
 
         Dim aStream As FileStream
         Dim aFile As New FileInfo(filePath)
 
         Dim aFileData As Byte()
-        Dim outputData As Object()
+        'Dim outputData As Byte()
 
         Dim conta As Integer = 7
 
@@ -336,21 +351,19 @@ Public Class WYZtoSDCCobj
             Return Nothing
         End If
 
-        aStream = New System.IO.FileStream(filePath, FileMode.Open)
-
         ReDim aFileData(filesize)
-        ReDim outputData(filesize)
 
+        aStream = New System.IO.FileStream(filePath, FileMode.Open)
         aStream.Read(aFileData, 0, filesize)
         aStream.Close()
 
 
         ' convert Byte Array to Object Array
-        For i As Integer = 0 To filesize
-            outputData(i) = aFileData(i)
-        Next
+        'For i As Integer = 0 To filesize
+        '    outputData(i) = aFileData(i)
+        'Next
 
-        Return outputData
+        Return aFileData
 
     End Function
 
@@ -362,14 +375,14 @@ Public Class WYZtoSDCCobj
 
         Dim comments As New ArrayList
 
-        Dim outputData As Object()
+        Dim outputData As Byte()
 
         Dim anItem As String
 
         Dim SongNumber As Integer = 0
 
-        OutputText.Text = ";" + TrackerName + " Music and FXs Data" + vbNewLine
-        OutputText.Text += ";" + My.Application.Info.ProductName + " v" + My.Application.Info.Version.ToString + vbNewLine + vbNewLine
+        OutputText.Text = ";" + My.Application.Info.ProductName + " v" + My.Application.Info.Version.ToString + vbNewLine
+        OutputText.Text += ";" + TrackerName + " Music and FXs Data" + vbNewLine + vbNewLine
 
         'If SongInfo_CheckBox.Checked Then
         '    OutputText.Text += "const char " + labelName + "_name[] = " + Chr(34) + Me.SongName + Chr(34) + ";" + vbNewLine
@@ -429,7 +442,7 @@ Public Class WYZtoSDCCobj
 
         SongNumber = 0
         If Me.WYZ_SongsData.Count > 0 Then
-            For Each anItem In Me.WYZ_SongsData.Keys
+            For Each anItem In Me.MUS_ListBox.Items
                 comments.Clear()
                 comments.Add(anItem)
 
@@ -445,6 +458,7 @@ Public Class WYZtoSDCCobj
     End Sub
 
 
+
     ''' <summary>
     ''' Copy output to clipboard
     ''' </summary>
@@ -455,52 +469,6 @@ Public Class WYZtoSDCCobj
         Else
             My.Computer.Clipboard.SetText(Me.OutputText.Text)
         End If
-    End Sub
-
-
-
-
-
-
-    Private Sub CopyAllButton_Click(sender As Object, e As EventArgs) Handles CopyAllButton.Click
-        CopyAll()
-    End Sub
-
-    Private Sub SaveAsButton_Click(sender As Object, e As EventArgs) Handles SaveAsButton.Click
-        SaveAs()
-    End Sub
-
-
-
-
-    'Private Sub WYZtoCdataWin_DragEnter(sender As Object, e As DragEventArgs) Handles MyBase.DragEnter
-    '    If (e.Data.GetDataPresent(DataFormats.FileDrop)) Then
-    '        e.Effect = DragDropEffects.Copy
-    '    Else
-    '        e.Effect = DragDropEffects.None
-    '    End If
-    'End Sub
-
-
-
-    'Private Sub WYZtoCdataWin_DragDrop(sender As Object, e As DragEventArgs) Handles MyBase.DragDrop
-    '    Dim tmpstr() As String = e.Data.GetData("FileDrop", False)
-    '    Dim filePath As String = tmpstr(0)
-
-    '    Me.BringToFront()
-    '    Me.Activate()
-
-    '    If Path.GetExtension(filePath).ToUpper = ".MUS" Then
-    '        LoadWYZ(filePath)
-    '    End If
-
-    'End Sub
-
-
-
-    Private Sub AboutButton_Click(sender As Object, e As EventArgs) Handles AboutButton.Click
-        Dim aboutWin As New AboutForm()
-        aboutWin.ShowDialog(Me)
     End Sub
 
 
@@ -535,6 +503,52 @@ Public Class WYZtoSDCCobj
         Return Nothing
 
     End Function
+
+
+
+    Private Sub CopyAllButton_Click(sender As Object, e As EventArgs) Handles CopyAllButton.Click
+        CopyAll()
+    End Sub
+
+
+
+    Private Sub SaveAsButton_Click(sender As Object, e As EventArgs) Handles SaveAsButton.Click
+        SaveAs()
+    End Sub
+
+
+
+    Private Sub AboutButton_Click(sender As Object, e As EventArgs) Handles AboutButton.Click
+        Dim aboutWin As New AboutForm()
+        aboutWin.ShowDialog(Me)
+    End Sub
+
+
+
+    Private Sub WYZtoSDCCobj_DragEnter(sender As Object, e As DragEventArgs) Handles MyBase.DragEnter
+        If (e.Data.GetDataPresent(DataFormats.FileDrop)) Then
+            e.Effect = DragDropEffects.Copy
+        Else
+            e.Effect = DragDropEffects.None
+        End If
+    End Sub
+
+
+
+    Private Sub WYZtoSDCCobj_DragDrop(sender As Object, e As DragEventArgs) Handles MyBase.DragDrop
+        Dim tmpstr() As String = e.Data.GetData("FileDrop", False)
+        Dim filePath As String = tmpstr(0)
+
+        Me.Select()
+
+        If filePath.ToLower.EndsWith(".mus.asm") Then
+            Me.MUSasm_TextBox.Text = Path.GetFileName(filePath)
+            LoadInstrumentsData(filePath)
+        ElseIf Path.GetExtension(filePath).ToLower = ".mus" Then
+            AddSongData(filePath)
+        End If
+
+    End Sub
 
 
 
