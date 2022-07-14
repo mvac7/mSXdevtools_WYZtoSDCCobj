@@ -1,6 +1,6 @@
 ﻿Public NotInheritable Class AboutForm
 
-    Private Const License_URL As String = "http://www.gnu.org/licenses/gpl-2.0-standalone.html"
+    Private Const License_URL As String = "https://www.gnu.org/licenses/gpl-3.0-standalone.html"
 
     Private Sub AboutBox1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ' Establezca el título del formulario.
@@ -20,10 +20,11 @@
         'Me.LabelLicense.Text = My.Application.Info.CompanyName
         Me.TextBoxDescription.Text = My.Application.Info.Description + vbNewLine + vbNewLine
         Me.TextBoxDescription.Text += "WYZ MSX PSG proPLAYER is developed by WYZ and WYZTracker is a tool developed by Augusto Ruiz, from Retroworks." + vbNewLine + vbNewLine
-        Me.TextBoxDescription.Text += "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version." + vbNewLine + vbNewLine
-        Me.TextBoxDescription.Text += "This program Is distributed In the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY Or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details." + vbNewLine + vbNewLine
-        Me.TextBoxDescription.Text += "You should have received a copy Of the GNU General Public License along With this program." + vbNewLine + "If Not, see <http: //www.gnu.org/licenses/>."
 
+        Me.TextBoxDescription.Text += "License:" + vbNewLine
+        Me.TextBoxDescription.Text += "This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version." + vbNewLine + vbNewLine
+        Me.TextBoxDescription.Text += "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details." + vbNewLine + vbNewLine
+        Me.TextBoxDescription.Text += "You should have received a copy of the GNU General Public License along with this program." + vbNewLine + "If not, see <https://www.gnu.org/licenses/>."
 
     End Sub
 

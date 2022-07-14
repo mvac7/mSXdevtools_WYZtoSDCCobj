@@ -3,14 +3,15 @@
 ```
 Author:       mvac7 (aka aorante)
 Architecture: Microsoft .Net framework 4.0
-License:      GNU GPL v2  
+License:      GNU GPL v3  
 ```
 
 ## Sorry! This text is pending correction of the English translation
 
-                                                               
+<br/>                                                               
 
 ---
+
 ## About WYZtoSDCCobj
 
 This is a tool to convert export .MUS files from WYZ Tracker to SDCC Assembler files (.s) for use with [WYZ Player MSX SDCC Library](https://github.com/mvac7/SDCC_WYZplayer)
@@ -27,34 +28,37 @@ This is an open source project so you can include it in your projects, create a 
 
 This software was developed in Microsoft Visual Studio Community 2019.
 
-
+<br/>
 
 ---
+
 ## License
 
 Copyright (C) 2022 mvac7
 
-This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; 
-without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 See the GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License along with this program.
-If not, see <http://www.gnu.org/licenses/>.
+You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
- 
+<br/> 
 
 ---
+
 ## Requirements:
 
-* Windows OS with .net framework v4.0
-* [WYZTracker](https://github.com/AugustoRuiz/WYZTracker) for create WYZ songs 
+- Windows OS with .net framework v4.0
+- [WYZTracker](https://github.com/AugustoRuiz/WYZTracker) for create WYZ songs
+- [Small Device C Compiler (SDCC) v4.1](http://sdcc.sourceforge.net/)
 
+<br/>
 
-
---- 
+---
+ 
 ## How to use
 
 Once we have a song made with WYZTracker `.wyz`, we must export it to the `.mus` format designed to import them into assembler projects.

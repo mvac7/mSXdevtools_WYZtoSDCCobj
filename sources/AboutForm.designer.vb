@@ -111,7 +111,7 @@ Partial Class AboutForm
         Me.LabelLicense.Size = New System.Drawing.Size(408, 28)
         Me.LabelLicense.TabIndex = 0
         Me.LabelLicense.TabStop = True
-        Me.LabelLicense.Text = "GNU GPL v2"
+        Me.LabelLicense.Text = "GNU GPL v3"
         '
         'TextBoxDescription
         '
@@ -132,7 +132,7 @@ Partial Class AboutForm
         'OKButton
         '
         Me.OKButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.OKButton.BackColor = System.Drawing.Color.LightGray
+        Me.OKButton.BackColor = System.Drawing.Color.PaleTurquoise
         Me.OKButton.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.OKButton.ForeColor = System.Drawing.Color.Black
         Me.OKButton.Location = New System.Drawing.Point(316, 358)
