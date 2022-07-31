@@ -8,10 +8,10 @@ Imports System.Runtime.InteropServices
 
 ' Revisar los valores de los atributos del ensamblado
 
-<Assembly: AssemblyTitle("WYZtoSDCCobj")>
+<Assembly: AssemblyTitle("WYZmus2sdccO devtool")>
 <Assembly: AssemblyDescription("WYZTracker .MUS files to SDCC Object Converter Tool for use in WYZplayer MSX SDCC Library (fR3eL Project)")>
 <Assembly: AssemblyCompany("MSX comm·unity")>
-<Assembly: AssemblyProduct("WYZtoSDCCobj Converter Tool")>
+<Assembly: AssemblyProduct("WYZ MUS to SDCC Object Converter Tool")>
 <Assembly: AssemblyCopyright("Copyright mvac7 (aka aorante) 2022")>
 <Assembly: AssemblyTrademark("")>
 
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' utilizando el carácter "*", como se muestra a continuación:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.0.4.0")>
-<Assembly: AssemblyFileVersion("1.0.4.0")>
+<Assembly: AssemblyVersion("1.0.5.0")>
+<Assembly: AssemblyFileVersion("1.0.5.0")>

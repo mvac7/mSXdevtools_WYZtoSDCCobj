@@ -121,16 +121,34 @@
   <data name="save3_x24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\save3_x24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="BG_graywhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BG_graywhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="button_clear" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\button_clear.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Load_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Load_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="button_savesource" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\button_savesource.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WYZtoSDCCobj_icon01_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WYZtoSDCCobj_icon01_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="button_CopyAll" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\button_CopyAll.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="button_delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\button_delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WYZmus2sdccO_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WYZmus2sdccO_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="new_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\new_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="about_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\about_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="WYZtoSDCCobj_icon01_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\WYZtoSDCCobj_icon01_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="button_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\button_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="panel_WYZtrackerMUS_BG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\panel_WYZtrackerMUS_BG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

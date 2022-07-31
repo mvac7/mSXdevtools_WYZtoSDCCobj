@@ -5,32 +5,32 @@ Public Class DataFormat
     ''' <summary>
     ''' Provides the last line number used in BASIC, with its increase.
     ''' </summary>
-    ''' <remarks></remarks>
-    Public BASIClineNumber As Short
+    Public BASIC_Line As Short = 10000
+
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    Public BASIC_increment As Byte = 10
 
 
-    ' dec nnn
-    ' dec nnnd
-    ' hex FF
-    ' hex 0xFF
-    ' hex FF$
-    ' hex FF#
-    ' hex 0FFh
+
     Public Shadows Enum DataType As Byte
         DECIMAL_n = 0         '1
-        DECIMAL_nnn = 11      '001
-        DECIMAL_nnnd = 1      '001d
+        DECIMAL_nnn = 1      '001  - 11
+        DECIMAL_nnnd = 2      '001d - 1
 
-        HEXADECIMAL_nn = 2    'FF
-        HEXADECIMAL_0xnn = 3  '0xFF
-        HEXADECIMAL_Snn = 4   '$FF
-        HEXADECIMAL_4nn = 5   '#FF
-        HEXADECIMAL_0nnh = 6  '0FFh
-        HEXADECIMAL_yHnn = 7  '&hFF
+        HEXADECIMAL_nn = 3    'FF   - 2
+        HEXADECIMAL_Snn = 4   '$FF  - 4
+        HEXADECIMAL_4nn = 5   '#FF  - 5
+        HEXADECIMAL_0nnh = 6  '0FFh - 6
+        HEXADECIMAL_C = 7  '0xFF - 3
+        HEXADECIMAL_BASIC = 8  '&hFF - 7
 
-        BINARY_n = 8   ' 00000000
-        BINARY_nb = 9  ' 00000000b
-        BINARY_percentn = 10 ' %00000000
+        BINARY_n = 9          ' 00000000   - 8
+        BINARY_nb = 10        ' 00000000b  - 9
+        BINARY_percentn = 11  ' %00000000
+        BINARY_C = 12         ' 0B00000000
+        BINARY_BASIC = 13     ' &B00000000
     End Enum
 
 
@@ -61,20 +61,27 @@ Public Class DataFormat
 
         Dim line As String
 
-        Dim i As Integer = 0
-        Dim o As Integer = 0
+        Dim i As Integer
+        Dim o As Integer
 
         Dim tmpCalc As Short
 
         Dim tableSize As Short
         tableSize = tmpData.Length - 1
 
-        outputString = GetBASICComments(comment, firstNumLine, incLine)
+        Me.BASIC_Line = firstNumLine
+        Me.BASIC_increment = incLine
+
+        outputString = GetComments(comment, ProgrammingLanguage.BASIC) 'GetBASICComments(comment, firstNumLine, incLine)
+
+        If itemsPerLine = 0 Then
+            itemsPerLine = 32 ' maximum data per line
+        End If
 
         tmpCalc = -Int(-((tableSize + 1) / itemsPerLine))
 
         For i = 1 To tmpCalc
-            line = CStr(Me.BASIClineNumber) + " DATA "
+            line = CStr(Me.BASIC_Line) + " DATA "
             For o = 0 To itemsPerLine - 2
                 If (contador < tableSize) Then
                     line += GetBasicFormatedValue(tmpData(contador), format, removeZeros) + ","
@@ -90,7 +97,7 @@ Public Class DataFormat
             End If
 
             outputString += line + vbNewLine
-            Me.BASIClineNumber += incLine
+            Me.BASIC_Line += incLine
         Next
 
         Return outputString
@@ -120,7 +127,7 @@ Public Class DataFormat
         Dim i As Integer = 0
         Dim o As Integer = 0
 
-        Dim tmpCalc As Short
+        Dim totalLines As Short
 
         'Dim tmpValue As Object
         Dim formatedVale As String
@@ -133,9 +140,13 @@ Public Class DataFormat
         line = dataCommand + " " + GetCFieldFormat(fieldName) + "[]={"
         outputString += line + vbNewLine
 
-        tmpCalc = -Int(-((tableSize + 1) / itemsPerLine))
+        If itemsPerLine = 0 Then
+            itemsPerLine = 32 ' maximum data per line
+        End If
 
-        For i = 1 To tmpCalc
+        totalLines = -Int(-((tableSize + 1) / itemsPerLine))
+
+        For i = 1 To totalLines
             line = ""
             For o = 0 To itemsPerLine - 1
 
@@ -146,20 +157,14 @@ Public Class DataFormat
                     If (contador < tableSize) Then
                         line += formatedVale + ","
                         contador += 1
-                    Else
-                        If (contador = tableSize) Then
-                            line += formatedVale + "};"
-                            contador += 1
-                        End If
+                    ElseIf (contador = tableSize) Then
+                        line += formatedVale + "};"
+                        contador += 1
                     End If
 
                 End If
 
             Next
-            'If Not (contador > tableSize) Then
-            '    line += GetFormatedValue(tmpData(contador), format)
-            '    contador += 1
-            'End If
 
             outputString += line + vbNewLine
         Next
@@ -190,7 +195,7 @@ Public Class DataFormat
         Dim i As Integer = 0
         Dim o As Integer = 0
 
-        Dim tmpCalc As Short
+        Dim totalLines As Short
 
         Dim formatedVale As String
 
@@ -203,30 +208,35 @@ Public Class DataFormat
             outputString += GetAsmFieldFormat(fieldName) + ":" + vbNewLine
         End If
 
-        tmpCalc = -Int(-((tableSize + 1) / itemsPerLine))
+        If itemsPerLine = 0 Then
+            itemsPerLine = 32 ' maximum data per line
+        End If
 
-        For i = 1 To tmpCalc
-            line = dataCommand + " "
-            For o = 0 To itemsPerLine - 2
+        totalLines = -Int(-((tableSize + 1) / itemsPerLine))
+
+        For i = 1 To totalLines
+
+            If dataCommand.ToLower.StartsWith("<tab>") Then
+                line = vbTab + dataCommand.Substring(5) + " "
+            Else
+                line = dataCommand + " "
+            End If
+
+            For o = 0 To itemsPerLine - 1
 
                 If Not (contador > tableSize) Then
 
                     formatedVale = GetFormatedValue(tmpData(contador), format)
 
-                    If (contador < tableSize) Then
-                        line += formatedVale + ","
-                        contador += 1
-                    ElseIf (contador = tableSize) Then
+                    If (o = itemsPerLine - 1) Or (contador = tableSize) Then
                         line += formatedVale
-                        contador += 1
+                    Else
+                        line += formatedVale + ","
                     End If
+                    contador += 1
 
                 End If
             Next
-            If Not (contador > tableSize) Then
-                line += GetFormatedValue(tmpData(contador), format)
-                contador += 1
-            End If
 
             outputString += line + vbNewLine
         Next
@@ -276,7 +286,7 @@ Public Class DataFormat
     ''' <param name="value"></param>
     ''' <param name="format"></param>
     ''' <returns></returns>
-    Private Function GetFormatedValue(ByVal value As Object, ByVal format As DataType) As String
+    Public Function GetFormatedValue(ByVal value As Object, ByVal format As DataType) As String
 
         Dim outputData As String = "0"
 
@@ -309,7 +319,7 @@ Public Class DataFormat
             Case DataType.HEXADECIMAL_0nnh
                 outputData = "0" + Hex(value).PadLeft(hexSize, "0"c) + "h"
 
-            Case DataType.HEXADECIMAL_0xnn
+            Case DataType.HEXADECIMAL_C
                 outputData = "0x" + Hex(value).PadLeft(hexSize, "0"c)
 
             Case DataType.HEXADECIMAL_4nn
@@ -318,7 +328,7 @@ Public Class DataFormat
             Case DataType.HEXADECIMAL_Snn
                 outputData = "$" + Hex(value).PadLeft(hexSize, "0"c)
 
-            Case DataType.HEXADECIMAL_yHnn
+            Case DataType.HEXADECIMAL_BASIC
                 outputData = "&H" + Hex(value).PadLeft(hexSize, "0"c)
 
             Case DataType.BINARY_n
@@ -329,6 +339,12 @@ Public Class DataFormat
 
             Case DataType.BINARY_percentn
                 outputData = "%" + Convert.ToString(value, 2).PadLeft(binSize, "0"c)
+
+            Case DataType.BINARY_C
+                outputData = "0b" + Convert.ToString(value, 2).PadLeft(binSize, "0"c)
+
+            Case DataType.BINARY_BASIC
+                outputData = "&B" + Convert.ToString(value, 2).PadLeft(binSize, "0"c)
 
         End Select
 
@@ -414,14 +430,13 @@ Public Class DataFormat
 
 
 
-    'Public Function ByteSpliter(ByVal data As String, ByVal size As Integer, ByVal initpos As Integer) As Byte()
-    '    Dim genData As New mSXdevtools.WYZtoSDCCobj.DataFormat
-    '    If data.IndexOf(",") = -1 Then
-    '        Return genData.ByteSpliterHex(data, size, initpos)
-    '    Else
-    '        Return genData.ByteSpliter(data, size, initpos, 0)
-    '    End If
-    'End Function
+    Public Function ByteSpliter(ByVal data As String, ByVal size As Integer, ByVal initpos As Integer) As Byte()
+        If data.IndexOf(",") = -1 Then
+            Return ByteSpliterHex(data, size, initpos)
+        Else
+            Return ByteSpliter(data, size, initpos, 0)
+        End If
+    End Function
 
 
 
@@ -468,7 +483,6 @@ Public Class DataFormat
 
         Dim defaultString As String = "," + CStr(defaultvalue)
 
-        'data += ",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"
         For i As Integer = 0 To 31
             data += defaultString
         Next
@@ -529,6 +543,10 @@ Public Class DataFormat
             For Each commentValue As String In comment
 
                 Select Case format
+                    Case ProgrammingLanguage.BASIC
+                        outputString += CStr(Me.BASIC_Line) + " REM " + commentValue + vbNewLine
+                        Me.BASIC_Line += Me.BASIC_increment
+
                     Case ProgrammingLanguage.C
                         outputString += "// " + commentValue + vbNewLine
 
@@ -547,24 +565,35 @@ Public Class DataFormat
 
 
 
-    ''' <summary>
-    ''' Provides a String from a list of texts, in BASIC format.
-    ''' </summary>
-    ''' <param name="comment"></param>
-    ''' <param name="firstNumLine"></param>
-    ''' <param name="incLine"></param>
-    ''' <returns></returns>
-    Public Function GetBASICComments(ByVal comment As ArrayList, ByVal firstNumLine As Short, ByVal incLine As Byte) As String
+    Public Function GetAsmLabelsIndex(ByVal label As String, ByVal labelsList As ArrayList, ByVal dataCommand As String) As String
         Dim outputString As String = ""
+        Dim contaLines As Integer = 0
+        Dim item As String
+        Dim total As Integer = labelsList.Count - 1
 
-        Me.BASIClineNumber = firstNumLine
+        outputString = label + ":" + vbNewLine
 
-        If Not comment Is Nothing Then
-            For Each commentValue As String In comment
-                outputString += CStr(Me.BASIClineNumber) + " REM " + commentValue + vbNewLine
-                Me.BASIClineNumber += incLine
-            Next
-        End If
+        For i As Integer = 0 To total
+            item = labelsList.Item(i)
+
+            If contaLines = 0 Then
+                If dataCommand.ToLower.StartsWith("<tab>") Then
+                    outputString += vbTab + dataCommand.Substring(5) + " "
+                Else
+                    outputString += dataCommand + " "
+                End If
+            End If
+
+            outputString += item
+            contaLines += 1
+            If contaLines < 4 And i < total Then
+                outputString += ","
+            Else
+                outputString += vbNewLine
+                contaLines = 0
+            End If
+
+        Next
 
         Return outputString
 
@@ -572,6 +601,39 @@ Public Class DataFormat
 
 
 
+    'Public Function GetProjectInfoComments(ByRef prjinfo As ProjectInfo, ByVal format As ProgrammingLanguage) As String
+
+    '    Dim comments As New ArrayList
+    '    Dim tmpInfo As String = ""
+
+    '    comments.Add(My.Application.Info.ProductName + " v" + My.Application.Info.Version.ToString)
+    '    comments.Add("Project: " + prjinfo.Project)
+
+    '    comments.Add("Subproject: " + prjinfo.Name)
+
+    '    If Not prjinfo.Author = "" Then
+    '        tmpInfo = "Author: " + prjinfo.Author
+    '    End If
+
+    '    If Not prjinfo.Group = "" Then
+    '        If Not tmpInfo = "" Then
+    '            tmpInfo += " - "
+    '        End If
+    '        tmpInfo += "Group: " + prjinfo.Group
+    '    End If
+
+    '    If Not tmpInfo = "" Then
+    '        comments.Add(tmpInfo)
+    '    End If
+
+
+    '    If Not prjinfo.Description = "" Then
+    '        comments.Add("Description: " + prjinfo.Description)
+    '    End If
+
+    '    Return GetComments(comments, format)
+
+    'End Function
 
 
 End Class
