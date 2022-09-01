@@ -86,7 +86,7 @@ The WYZplayer library for SDCC is not designed for this way of working but you c
 
 WYZtoSDCCobj Converter Tool generates a C object file with the instrument set and one or more songs.
 
-![WYZtoSDCCobj_v1000_screenshot00](https://raw.githubusercontent.com/mvac7/mSXdevtools_WYZtoSDCCobj/main/_GFX/WYZtoSDCCobj_v1000_screenshot00.png)
+![WYZtoSDCCobj_v1000_screenshot00](GFX/WYZtoSDCCobj_v1000_screenshot00.png)
 
 To do this, you will first have to load the file with the instrument data `.mus.asm`, by pressing the "Add" button on the first line.
 
