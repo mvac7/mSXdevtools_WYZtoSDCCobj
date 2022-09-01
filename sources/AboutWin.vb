@@ -57,11 +57,11 @@ Public NotInheritable Class AboutWin
         ' TODO: personalice la información del ensamblado de la aplicación en el panel "Aplicación" del 
         '    cuadro de diálogo propiedades del proyecto (bajo el menú "Proyecto").
         'Me.LabelProductName.Text = My.Application.Info.Title
-        Me.versionLabel.Text = My.Application.Info.Version.ToString + "b" 'String.Format("Versión {0}", My.Application.Info.Version.ToString)
+        Me.versionLabel.Text = My.Application.Info.Version.ToString + "-beta" 'String.Format("Versión {0}", My.Application.Info.Version.ToString)
         Me.copyleftLabel.Text = My.Application.Info.Copyright
         'Me.LabelCompanyName.Text = My.Application.Info.CompanyName
 
-        If Me.DescriptionLabel.Text = "" Then
+        If Me.DescriptionLabel.Text = "description..." Then
             Me.DescriptionLabel.Text = My.Application.Info.Description
         End If
 

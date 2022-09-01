@@ -91,6 +91,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="piXelGroupBox.Designer.vb">
+      <DependentUpon>piXelGroupBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="piXelGroupBox.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="WYZtoSDCCobj.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MessageDialog.resx">
       <DependentUpon>MessageDialog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="piXelGroupBox.resx">
+      <DependentUpon>piXelGroupBox.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WYZtoSDCCobj.resx">
       <DependentUpon>WYZtoSDCCobj.vb</DependentUpon>
@@ -151,10 +160,8 @@
     <None Include="Resources\button_clear.png" />
     <None Include="Resources\button_savesource.png" />
     <None Include="Resources\button_CopyAll.png" />
-    <None Include="Resources\panel_WYZtrackerMUS_BG.png" />
+    <None Include="Resources\help_x24.png" />
     <Content Include="WYZtoSDCCobj.ico" />
-    <None Include="_GFX\PT3toC_icon01_128.png" />
-    <None Include="_GFX\PT3toC_icon01_256 copia.png" />
     <None Include="Resources\about_24.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

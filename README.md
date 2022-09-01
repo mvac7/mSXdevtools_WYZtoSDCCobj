@@ -1,18 +1,18 @@
-# WYZtoSDCCobj Converter Tool
+# WYZmus2sdccO 
+### WYZTracker .MUS to SDCC object Converter Tool
+
+![WYZtoSDCCo title logo](GFX/WYZmus2sdccO_logo.png)
     
 ```
 Author:       mvac7 (aka aorante)
 Architecture: Microsoft .Net framework 4.0
 License:      GNU GPL v3  
 ```
-
-## Sorry! This text is pending correction of the English translation
-
-<br/>                                                               
+                                                             
 
 ---
 
-## About WYZtoSDCCobj
+## About WYZmus2sdccO
 
 This is a tool to convert export .MUS files from WYZ Tracker to SDCC Assembler files (.s) for use with [WYZ Player MSX SDCC Library](https://github.com/mvac7/SDCC_WYZplayer)
 
@@ -24,7 +24,7 @@ MSX PSG proPLAYER V0.3 is a development of WYZ [(WYZ Player)](https://github.com
 
 This tool is part of the [MSX fR3eL Project](https://github.com/mvac7/SDCC_MSX_fR3eL), although it can be included in other libraries/engines.
 
-This is an open source project so you can include it in your projects, create a Fork to modify it and create a version adapted to your needs or as a base to create other tools.
+This is an open source project so you can include it in your projects, create a Fork to modify it and create a version adapted to your needs or as a base to create other tools (See License).
 
 This software was developed in Microsoft Visual Studio Community 2019.
 
@@ -44,6 +44,16 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY o
 See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+<br/> 
+
+---
+
+## History of versions:
+
+- 1.0.5-beta (04/August/2022) First Release
+- 1.0.4-beta (11/March/2021) 
+
 
 <br/> 
 

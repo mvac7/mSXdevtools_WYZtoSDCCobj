@@ -169,7 +169,7 @@ Partial Class AboutWin
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Gainsboro
-        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.CancelButton = Me.OKButton
         Me.ClientSize = New System.Drawing.Size(604, 441)
         Me.ControlBox = False

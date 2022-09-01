@@ -123,9 +123,9 @@ Namespace My.Resources
         '''<summary>
         '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property new_24() As System.Drawing.Bitmap
+        Friend ReadOnly Property help_x24() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("new_24", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("help_x24", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -133,9 +133,9 @@ Namespace My.Resources
         '''<summary>
         '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property panel_WYZtrackerMUS_BG() As System.Drawing.Bitmap
+        Friend ReadOnly Property new_24() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("panel_WYZtrackerMUS_BG", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("new_24", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

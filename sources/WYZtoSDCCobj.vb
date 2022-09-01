@@ -58,6 +58,8 @@ Public Class WYZtoSDCCobj
 
     Private Sub WYZtoCdataWin_Load(sender As Object, e As EventArgs) Handles Me.Load
 
+        ShowAboutDialog()
+
         NewProject()
 
     End Sub
@@ -340,7 +342,7 @@ Public Class WYZtoSDCCobj
 
 
 
-    Private Sub SaveAs()
+    Private Sub SaveSourceDialog()
 
         'Dim filename As String = ProjectNameTextBox.Text  'Path.GetFileNameWithoutExtension(Me.WYZ_Path)
 
@@ -620,8 +622,8 @@ Public Class WYZtoSDCCobj
 
 
 
-    Private Sub SaveAsButton_Click(sender As Object, e As EventArgs) Handles SaveAsButton.Click
-        SaveAs()
+    Private Sub SaveAsButton_Click(sender As Object, e As EventArgs) Handles SaveSourceButton.Click
+        SaveSourceDialog()
     End Sub
 
 
